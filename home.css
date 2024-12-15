@@ -1,0 +1,95 @@
+body {
+    font-family: 'Amiri', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    direction: rtl;
+    text-align: right;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#quote-display {
+    margin-bottom: 20px;
+}
+
+#quote {
+    font-size: 1.2em;
+    font-style: italic;
+    margin-bottom: 10px;
+    line-height: 1.6; /* Improved line height for readability */
+}
+
+#author {
+    font-style: italic;
+    color: #777;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+/*this is for botton*/
+/* ... (other CSS styles) ... */
+
+#quote-display {
+    margin-bottom: 20px;
+    display: flex; /* Enable flexbox for quote and copy button */
+    align-items: center; /* Vertically align items */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center;
+}
+
+#quote {
+    font-size: 1.2em;
+    font-style: italic;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    flex-grow: 1; /* Allow quote to take up available space */
+    text-align: center; /* Center the quote text */
+}
+#author {
+    font-style: italic;
+    color: #777;
+    text-align: center; /* Center the author text */
+    width: 100%; /* Ensure author takes full width when wrapped */
+    margin-bottom: 10px; /* Add some bottom margin */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px; /* Add horizontal margin between buttons */
+}
+
+button:hover {
+    background-color: #45a049;
+}
