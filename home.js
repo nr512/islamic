@@ -1,34 +1,47 @@
-const quoteDisplay = document.getElementById('quote-display');
-const quoteText = document.getElementById('quote');
-const authorText = document.getElementById('author');
-const newQuoteButton = document.getElementById('new-quote');
+const quotes = [
+            { text: "الدنيا متاع، وخير متاعها المرأة الصالحة", author: "النبي محمد ﷺ" },
+            { text: "خير الناس أنفعهم للناس", author: "النبي محمد ﷺ" },
+            { text: "إنما الأعمال بالنيات", author: "النبي محمد ﷺ" },
+            // Add more quotes as needed
+        ];
 
-async function getQuotes() {
-    try {
-        const response = await fetch('quotes.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        const quoteText = document.getElementById('quote');
+        const authorText = document.getElementById('author');
+        const newQuoteBtn = document.getElementById('new-quote');
+        const copyQuoteBtn = document.getElementById('copy-quote');
+        const loading = document.querySelector('.loading');
+
+        function getRandomQuote() {
+            return quotes[Math.floor(Math.random() * quotes.length)];
         }
-        return await response.json();
-    } catch (error) {
-        console.error("Error fetching quotes:", error);
-        quoteText.textContent = "فشل في تحميل الاقتباسات."; // Arabic error message
-        return [];
-    }
-}
 
-async function generateQuote() {
-    const quotes = await getQuotes();
+        function displayQuote() {
+            const { text, author } = getRandomQuote();
+            quoteText.textContent = text;
+            authorText.textContent = author;
+        }
 
-    if (quotes.length > 0) {
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        const randomQuote = quotes[randomIndex];
+        function copyQuote() {
+            const textToCopy = `${quoteText.textContent} - ${authorText.textContent}`;
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    copyQuoteBtn.textContent = 'تم النسخ!';
+                    setTimeout(() => {
+                        copyQuoteBtn.textContent = 'نسخ الاقتباس';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+        }
 
-        quoteText.textContent = randomQuote.quote;
-        authorText.textContent = `- ${randomQuote.author}`;
-    }
-}
+        // Initial quote display
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loading.style.display = 'none';
+                displayQuote();
+            }, 2000);
+        });
 
-newQuoteButton.addEventListener('click', generateQuote);
-
-generateQuote();
+        newQuoteBtn.addEventListener('click', displayQuote);
+        copyQuoteBtn.addEventListener('click', copyQuote);
