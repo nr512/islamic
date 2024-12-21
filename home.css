@@ -137,3 +137,51 @@
 .social-icons a:hover {
     color: #888;
 }
+ .dua-section {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 2rem 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        animation: glowPulse 3s infinite;
+    }
+
+    @keyframes glowPulse {
+        0% { box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); }
+        50% { box-shadow: 0 4px 25px rgba(255, 255, 255, 0.2); }
+        100% { box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); }
+    }
+
+    .dua-text {
+        font-size: 1.5rem;
+        line-height: 2;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1.5s ease-out;
+    }
+
+    .dua-translation {
+        color: #888;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 1.5s ease-out 0.3s;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .divider {
+        width: 80%;
+        max-width: 300px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        margin: 2rem auto;
+    }
