@@ -1,95 +1,124 @@
-body {
-    font-family: 'Amiri', serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-    margin: 0;
-    direction: rtl;
-    text-align: right;
-}
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+        body {
+            font-family: 'Amiri', serif;
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-#quote-display {
-    margin-bottom: 20px;
-}
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
 
-#quote {
-    font-size: 1.2em;
-    font-style: italic;
-    margin-bottom: 10px;
-    line-height: 1.6; /* Improved line height for readability */
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-#author {
-    font-style: italic;
-    color: #777;
-}
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.1);
+        }
 
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        #quote-display {
+            background-color: #111;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
 
-button:hover {
-    background-color: #45a049;
-}
-/*this is for botton*/
-/* ... (other CSS styles) ... */
+        #quote {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
 
-#quote-display {
-    margin-bottom: 20px;
-    display: flex; /* Enable flexbox for quote and copy button */
-    align-items: center; /* Vertically align items */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    justify-content: center;
-}
+        #author {
+            font-size: 1.2rem;
+            color: #888;
+        }
 
-#quote {
-    font-size: 1.2em;
-    font-style: italic;
-    margin-bottom: 10px;
-    line-height: 1.6;
-    flex-grow: 1; /* Allow quote to take up available space */
-    text-align: center; /* Center the quote text */
-}
-#author {
-    font-style: italic;
-    color: #777;
-    text-align: center; /* Center the author text */
-    width: 100%; /* Ensure author takes full width when wrapped */
-    margin-bottom: 10px; /* Add some bottom margin */
-}
+        button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Amiri', serif;
+            margin: 0.5rem;
+        }
 
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 5px; /* Add horizontal margin between buttons */
-}
+        button:hover {
+            background-color: #888;
+            color: #fff;
+        }
 
-button:hover {
-    background-color: #45a049;
-}
+        .copy-button {
+            background-color: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+        }
+
+        footer {
+            background-color: #111;
+            padding: 1rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #888;
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-text {
+            font-size: 2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
