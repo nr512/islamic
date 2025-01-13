@@ -3,43 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مولد أقوال مأثورة إسلامية</title>
+    <title>أقوال مأثورة إسلامية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-     <div class="loading">
-        <div class="loading-text">جاري التحميل...</div>
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <div class="qibla-finder">
+        <button id="findQibla" class="qibla-btn">
+            <i class="fas fa-compass"></i>
+            <span>اتجاه القبلة</span>
+        </button>
+        <div class="compass-container hidden">
+            <div class="compass">
+                <div class="arrow"></div>
+                <div class="qibla-marker"></div>
+            </div>
+            <div class="qibla-info">جارِ تحديد اتجاه القبلة...</div>
+        </div>
     </div>
 
     <div class="container">
-        <h1>أقوال مأثورة إسلامية</h1>
-        <div id="quote-display">
-            <p id="quote"></p>
-            <p id="author"></p>
+        <h1 class="title-animation">أقوال مأثورة إسلامية</h1>
+        
+        <div class="quote-card">
+            <div class="quote-decoration top">❝</div>
+            <div class="quote-content">
+                <p id="quote" class="quote-text"></p>
+                <p id="author" class="quote-author"></p>
+                <p id="source" class="quote-source"></p>
+            </div>
+            <div class="quote-decoration bottom">❞</div>
         </div>
-        <button id="new-quote">اقتباس جديد</button>
-        <button id="copy-quote" class="copy-button">نسخ الاقتباس</button>
+
+        <div class="buttons-container">
+            <button id="new-quote" class="primary-btn">
+                <i class="fas fa-sync-alt"></i>
+                <span>اقتباس جديد</span>
+            </button>
+            
+            <div class="share-buttons">
+                <button id="copy-quote" class="secondary-btn">
+                    <i class="fas fa-copy"></i>
+                </button>
+                <button id="share-whatsapp" class="secondary-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+                <button id="share-facebook" class="secondary-btn facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="copy-notification" class="notification">تم النسخ بنجاح!</div>
     </div>
 
     <footer>
-        <div class="dua-section">
-                <div class="dua-text">
-                    رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيراً
-                </div>
-        <div class="social-links">
-            <a href="https://instagram.com/_nr_512_" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://github.com/nr512" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
+        <div class="footer-content">
+            <div class="dua-text">
+                رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيراً
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com/_nr_512_" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://github.com/nr512" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
         </div>
     </footer>
-   
-    <script src="home.js"></script>
+
+    <script src="app.js"></script>
 </body>
 </html>
