@@ -1,187 +1,332 @@
- * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+:root {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f8f9fa;
+    --primary-text: #1a1a1a;
+    --secondary-text: #4a4a4a;
+    --accent-color: #2c3e50;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
 
-        body {
-            font-family: 'Amiri', serif;
-            background-color: #000;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+[data-theme="dark"] {
+    --primary-bg: #1a1a1a;
+    --secondary-bg: #2d2d2d;
+    --primary-text: #ffffff;
+    --secondary-text: #cccccc;
+    --accent-color: #3498db;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
 
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            text-align: center;
-            animation: fadeIn 1s ease-in;
-        }
+/* General Styles */
+body {
+    font-family: 'Noto Naskh Arabic', 'Aref Ruqaa', serif;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: var(--secondary-bg);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: transform 0.3s ease;
+}
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(255,255,255,0.1);
-        }
+.theme-toggle:hover {
+    transform: rotate(180deg);
+}
 
-        #quote-display {
-            background-color: #111;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-        }
+/* Qibla Finder */
+.qibla-finder {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
 
-        #quote {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
+.qibla-btn {
+    background-color: var(--secondary-bg);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: transform 0.3s ease;
+}
 
-        #author {
-            font-size: 1.2rem;
-            color: #888;
-        }
+.qibla-btn:hover {
+    transform: translateY(-2px);
+}
 
-        button {
-            background-color: #fff;
-            color: #000;
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Amiri', serif;
-            margin: 0.5rem;
-        }
+.compass-container {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
 
-        button:hover {
-            background-color: #888;
-            color: #fff;
-        }
+.compass {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    background: conic-gradient(from 0deg, #3498db 0deg, transparent 1deg);
+}
 
-        .copy-button {
-            background-color: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-        }
+.arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 100px;
+    background-color: red;
+    transform-origin: bottom center;
+    transform: translate(-50%, -100%);
+    transition: transform 0.3s ease;
+}
 
-        footer {
-            background-color: #111;
-            padding: 1rem;
-            text-align: center;
-            margin-top: auto;
-        }
+.qibla-marker {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background-color: green;
+    transform: translateX(-50%);
+}
 
-        .social-links {
-            margin: 1rem 0;
-        }
+/* Container and Quote Styles */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    flex-grow: 1;
+}
 
-        .social-links a {
-            color: #fff;
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+.title-animation {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: slideDown 1s ease forwards;
+}
 
-        .social-links a:hover {
-            color: #888;
-        }
+.quote-card {
+    background-color: var(--secondary-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+.quote-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px var(--shadow-color);
+}
 
-        .loading-text {
-            font-size: 2rem;
-            animation: pulse 1.5s infinite;
-        }
+.quote-decoration {
+    font-size: 4rem;
+    color: var(--accent-color);
+    opacity: 0.2;
+    position: absolute;
+}
 
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
-        }
-.social-icons {
+.quote-decoration.top {
+    top: 10px;
+    right: 20px;
+}
+
+.quote-decoration.bottom {
+    bottom: 10px;
+    left: 20px;
+}
+
+.quote-content {
+    margin: 2rem 0;
+}
+
+.quote-text {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.quote-author {
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+    margin-bottom: 0.5rem;
+}
+
+.quote-source {
+    font-size: 1rem;
+    color: var(--accent-color);
+}
+
+/* Buttons */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     margin-top: 2rem;
+}
+
+.primary-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    background-color: var(--accent-color);
+}
+
+.share-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.secondary-btn {
+    background-color: var(--secondary-bg);
+    color: var(--primary-text);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.secondary-btn:hover {
+    transform: translateY(-2px);
+}
+
+.whatsapp:hover {
+    background-color: #25D366;
+    color: white;
+}
+
+.facebook:hover {
+    background-color: #1877F2;
+    color: white;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
 }
 
-.social-icons a {
-    color: white;
-    font-size: 24px;
-    margin: 0 10px;
-    transition: color 0.3s ease;
+.dua-text {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
 }
 
-.social-icons a:hover {
-    color: #888;
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
- .dua-section {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        padding: 2rem;
-        margin: 2rem 0;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        animation: glowPulse 3s infinite;
+
+.social-links a {
+    color: var(--primary-text);
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-2px);
+    color: var(--accent-color);
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+        margin: 1rem;
     }
 
-    @keyframes glowPulse {
-        0% { box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); }
-        50% { box-shadow: 0 4px 25px rgba(255, 255, 255, 0.2); }
-        100% { box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1); }
+    .quote-text {
+        font-size: 1.2rem;
     }
 
-    .dua-text {
-        font-size: 1.5rem;
-        line-height: 2;
-        margin-bottom: 1rem;
-        animation: fadeInUp 1.5s ease-out;
+    .buttons-container {
+        flex-direction: column;
     }
 
-    .dua-translation {
-        color: #888;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-        animation: fadeInUp 1.5s ease-out 0.3s;
+    .share-buttons {
+        width: 100%;
+        justify-content: center;
     }
+}
 
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .divider {
-        width: 80%;
-        max-width: 300px;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        margin: 2rem auto;
-    }
+.hidden {
+    display: none;
+}
